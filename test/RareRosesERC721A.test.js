@@ -25,12 +25,12 @@ const whitelistAddresses = [
   "0x2546BcD3c84621e976D8185a91A922aE77ECEc30",
   "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E",
   "0xdD2FD4581271e230360230F9337D5c0430Bf44C0",
-  "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
-  "0xAe430A6E623D66D1c36cA5Bcd7282C8f504a8e51"
+  "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199"
 ];
 
 contract('RAREROSES721A', accounts => {
   const [deployer, whitelistedUser, buyer, minter2, userA, userB, teamWallet] = accounts;
+  whitelistAddresses.push(whitelistedUser);
   const TEST_BASE_URI = "https://test-base-uri.storage/";
 
   before(async () => {});
