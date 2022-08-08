@@ -19,10 +19,10 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
   bool public whitelistMintEnabled;
   uint8 public constant perWalletPresale = 6;
 
-  uint16 public constant MAX_SUPPLY = 5000;
+  uint16 public immutable MAX_SUPPLY;
+  uint16 public RESERVED;
   uint8 public constant maxMintAmountPerTx = 3;
   uint256 public price = .06 ether;
-  uint16 public reserved = 150;
   bool public mintEnabled;
 
   string private baseURI;
@@ -35,16 +35,20 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
       string memory _name,
       string memory _symbol,
       string memory _defaultURI,
-      address _teamWallet
+      address _teamWallet,
+      uint16 _max_supply,
+      uint16 _reserved
   ) ERC721A(_name, _symbol) {
       require(_teamWallet != address(0), "Zero address error");
       baseURI = _defaultURI; 
       teamWallet = _teamWallet;
+      MAX_SUPPLY = _max_supply;
+      RESERVED = _reserved;
   }
 
   modifier mintCompliance(uint256 _mintAmount) {
     require(_mintAmount > 0 && _mintAmount <= maxMintAmountPerTx, 'Invalid mint amount!');
-    require(_totalMinted() + _mintAmount <= MAX_SUPPLY - reserved, 'Max supply exceeded!');
+    require(_totalMinted() + _mintAmount <= MAX_SUPPLY - RESERVED, 'Max supply exceeded!');
     _;
   }
 
@@ -101,16 +105,16 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
   }
 
   /**
-   * @notice Send reserved Rare Roses 
+   * @notice Send RESERVED Rare Roses 
    * @param _to address to send reserved nfts to.
    * @param _amount number of nfts to send 
    */
   function fetchReserved(address _to, uint16 _amount) public onlyOwner
   {
       require( _to !=  address(0), "Zero address error");
-      require( _amount <= reserved, "Exceeds reserved supply");
+      require( _amount <= RESERVED, "Exceeds reserved supply");
       _safeMint(_to, _amount);
-      reserved -= _amount;
+      RESERVED -= _amount;
   }
 
   /**

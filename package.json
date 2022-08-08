@@ -1,8 +1,11 @@
 {
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.2",
+    "@openzeppelin/test-helpers": "^0.5.15",
     "@truffle/hdwallet-provider": "^2.0.13",
     "dotenv": "^16.0.1",
-    "erc721a": "^4.2.2"
+    "erc721a": "^4.2.2",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.32"
   }
 }
