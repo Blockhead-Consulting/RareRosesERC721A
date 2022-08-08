@@ -28,4 +28,4 @@ def get_abi_functions(abi):
 
 
 if __name__ == '__main__':
-    extract_abi("../abis/xBatz.json")
+    extract_abi("../abis/RAREROSES721A.json")

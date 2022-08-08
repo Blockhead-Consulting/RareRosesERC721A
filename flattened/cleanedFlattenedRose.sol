@@ -1,6 +1,5 @@
 // File: erc721a/contracts/IERC721A.sol
 
-// SPDX-License-Identifier: MIT
 // ERC721A Contracts v4.2.2
 // Creator: Chiru Labs
 
@@ -290,7 +289,6 @@ interface IERC721A {
 
 // File: erc721a/contracts/ERC721A.sol
 
-// SPDX-License-Identifier: MIT
 // ERC721A Contracts v4.2.2
 // Creator: Chiru Labs
 
@@ -1374,7 +1372,6 @@ contract ERC721A is IERC721A {
 
 // File: @openzeppelin/contracts/utils/Context.sol
 
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (utils/Context.sol)
 
 pragma solidity ^0.8.0;
@@ -1401,7 +1398,6 @@ abstract contract Context {
 
 // File: @openzeppelin/contracts/access/Ownable.sol
 
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.7.0) (access/Ownable.sol)
 
 pragma solidity ^0.8.0;
@@ -1485,7 +1481,6 @@ abstract contract Ownable is Context {
 
 // File: @openzeppelin/contracts/utils/cryptography/MerkleProof.sol
 
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.7.0) (utils/cryptography/MerkleProof.sol)
 
 pragma solidity ^0.8.0;
@@ -1700,7 +1695,6 @@ library MerkleProof {
 
 // File: @openzeppelin/contracts/security/ReentrancyGuard.sol
 
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts v4.4.1 (security/ReentrancyGuard.sol)
 
 pragma solidity ^0.8.0;
@@ -1766,7 +1760,6 @@ abstract contract ReentrancyGuard {
 
 // File: @openzeppelin/contracts/utils/Strings.sol
 
-// SPDX-License-Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.7.0) (utils/Strings.sol)
 
 pragma solidity ^0.8.0;
@@ -1844,7 +1837,6 @@ library Strings {
 
 // File: contracts/RAREROSES721A.sol
 
-//SPDX-License-Identifier: UNLICENSED
 //                                    .....,,,,,,,,,,,,,,,,,,,,,,.....                                
 //                            .,,,,,,,********///*********//********,,,,,,,,,.                        
 //                     .,,,,**//****************////*****/////************/**,,,,,,                   
@@ -1890,12 +1882,12 @@ pragma solidity 0.8.15;
 
 
 
-contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
+contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
-  event StartRareRosePresale(address contractAddress);
-  event EndRareRosePresale(address contractAddress);
+  event StartPresale(address contractAddress);
+  event EndPresale(address contractAddress);
 
   bytes32 public merkleRoot;
   mapping(address => bool) public whitelistClaimed;
@@ -2006,9 +1998,9 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
   function toggleWhitelistMint() public onlyOwner {
       whitelistMintEnabled = !whitelistMintEnabled;
       if (whitelistMintEnabled) {
-        emit StartRareRosePresale(address(this));
+        emit StartPresale(address(this));
       } else {
-        emit EndRareRosePresale(address(this));
+        emit EndPresale(address(this));
       }
   }
 

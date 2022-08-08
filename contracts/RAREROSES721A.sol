@@ -46,7 +46,7 @@ import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
 import '@openzeppelin/contracts/utils/Strings.sol';
 
-contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
+contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
