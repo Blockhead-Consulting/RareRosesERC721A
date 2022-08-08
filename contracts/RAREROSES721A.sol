@@ -50,8 +50,8 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
 
   using Strings for uint256;
 
-  event StartRareRosePresale(address contractAddress);
-  event EndRareRosePresale(address contractAddress);
+  event StartPresale(address contractAddress);
+  event EndPresale(address contractAddress);
 
   bytes32 public merkleRoot;
   mapping(address => bool) public whitelistClaimed;
@@ -162,9 +162,9 @@ contract RareRoses721A is ERC721A, Ownable, ReentrancyGuard {
   function toggleWhitelistMint() public onlyOwner {
       whitelistMintEnabled = !whitelistMintEnabled;
       if (whitelistMintEnabled) {
-        emit StartRareRosePresale(address(this));
+        emit StartPresale(address(this));
       } else {
-        emit EndRareRosePresale(address(this));
+        emit EndPresale(address(this));
       }
   }
 
