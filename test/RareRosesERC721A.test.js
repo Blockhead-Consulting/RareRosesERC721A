@@ -33,8 +33,7 @@ contract('RAREROSES721A', accounts => {
   const [deployer, whitelistedUser, buyer, minter2, userA, userB, teamWallet] = accounts;
   const TEST_BASE_URI = "https://test-base-uri.storage/";
 
-  before(async () => {
-  });
+  before(async () => {});
 
   //--------- Deployment ----------
 
