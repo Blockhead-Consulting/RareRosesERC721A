@@ -1901,7 +1901,9 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
   bool public mintEnabled;
 
   string private baseURI;
+  string private defaultURI;
   address public teamWallet;
+  bool public revealed;
  
   /**
    * @notice Setup ERC721A
@@ -1915,7 +1917,7 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
       uint16 _reserved
   ) ERC721A(_name, _symbol) {
       require(_teamWallet != address(0), "Zero address error");
-      baseURI = _defaultURI; 
+      defaultURI = _defaultURI; 
       teamWallet = _teamWallet;
       MAX_SUPPLY = _max_supply;
       RESERVED = _reserved;
@@ -2028,6 +2030,13 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
       baseURI = _newUri;
   }
 
+  /**
+   * @notice Set default URI.
+   */
+  function setDefaultURI(string memory _newUri) public onlyOwner {
+      defaultURI = _newUri;
+  }
+
   function _baseURI() internal view virtual override returns (string memory) {
         return baseURI;
   }
@@ -2035,6 +2044,17 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
   function _startTokenId() internal view virtual override returns (uint256) {
       return 1;
   }
+
+  /**
+   * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+   */
+  function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+      if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
+      if (!revealed) {
+            return defaultURI;
+        } 
+      string memory bURI = _baseURI();
+      return bytes(bURI).length != 0 ? string(abi.encodePacked(baseURI, _toString(tokenId))) : ''; }
 
   receive() external payable {}
 
