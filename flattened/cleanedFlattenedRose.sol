@@ -2006,7 +2006,6 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
       }
   }
 
-
   /**
    * @notice Set price.
    * @param newPrice new minting price
@@ -2021,6 +2020,13 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
    */
   function toggleMintEnabled() public onlyOwner {
       mintEnabled = !mintEnabled;
+  }
+
+  /**
+   * @notice Toggles revealed state.
+   */
+  function toggleRevealed() public onlyOwner {
+      revealed = !revealed;
   }
 
   /**
