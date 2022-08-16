@@ -1959,7 +1959,6 @@ contract RAREROSES721A is ERC721A, Ownable, ReentrancyGuard {
             balanceOf(_msgSenderERC721A()) + _mintAmount <=  perWalletPresale,
             "Amount exceeds current maximum mints per account."
         );
-    require(!whitelistClaimed[_msgSenderERC721A()], 'Address already claimed!');
     bytes32 leaf = keccak256(abi.encodePacked(_msgSenderERC721A()));
     require(MerkleProof.verify(_merkleProof, merkleRoot, leaf), 'Invalid proof!');
 
